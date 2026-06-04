@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lam — WordPress Developer & Web Designer based in Vietnam. Crafting fast, custom WordPress sites with clean code and strong UX." />
+  <title>Lam — WordPress Developer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#" class="nav__logo">Lam<span class="dot">.</span></a>
+      <ul class="nav__links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="nav__cta">Let's talk</a></li>
+      </ul>
+      <!-- Mobile hamburger -->
+      <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="container hero__inner">
+
+      <div class="hero__tag reveal">Available for projects</div>
+
+      <h1 class="hero__title reveal">
+        WordPress dev<br>
+        <em>with designer eyes.</em>
+      </h1>
+
+      <p class="hero__sub reveal">
+        I build fast, maintainable WordPress sites — custom themes, WooCommerce stores,
+        and animated landing pages — for clients who care about quality.
+      </p>
+
+      <div class="hero__actions reveal">
+        <a href="#work" class="btn btn--primary">See my work</a>
+        <a href="#contact" class="btn btn--ghost">Work together →</a>
+      </div>
+
+      <!-- Floating tech pills -->
+      <div class="hero__pills reveal">
+        <span>WordPress</span>
+        <span>WooCommerce</span>
+        <span>PHP</span>
+        <span>GSAP</span>
+        <span>ACF / SCF</span>
+        <span>Elementor</span>
+      </div>
+
+    </div>
+
+    <!-- Decorative background grid -->
+    <div class="hero__grid" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============================================================
+       WORK / PROJECTS
+  ============================================================ -->
+  <section class="section" id="work">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <span class="label">Selected work</span>
+        <h2>Projects that shipped.</h2>
+      </div>
+
+      <div class="projects">
+
+        <!-- Project 1 -->
+        <article class="project-card reveal" data-index="01">
+          <div class="project-card__img">
+            <div class="project-card__placeholder" style="--hue: 160">
+              <!-- Replace with real screenshot: <img src="assets/viet-solar.jpg" alt="VietSolar product catalog site"> -->
+              <span>VietSolar</span>
+            </div>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span>WordPress</span><span>WooCommerce</span><span>ACF Pro</span><span>Custom Theme</span>
+            </div>
+            <h3>VietSolar — Product Catalog</h3>
+            <p>
+              Custom WooCommerce catalog for a Vietnamese solar lighting brand. Built a PHP-based ACF product importer, 
+              restructured permalinks, and optimised Apache rewrite rules with Vietnamese slugs.
+            </p>
+            <a href="https://viet-solar.com" target="_blank" rel="noopener" class="project-card__link">
+              View site <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card reveal" data-index="02">
+          <div class="project-card__img">
+            <div class="project-card__placeholder" style="--hue: 220">
+              <span>Meridian</span>
+            </div>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span>GSAP</span><span>ScrollTrigger</span><span>WordPress</span><span>Animation</span>
+            </div>
+            <h3>Meridian — Real Estate Demo</h3>
+            <p>
+              Scroll-based animated landing page built to learn and demonstrate advanced GSAP / ScrollTrigger patterns. 
+              Includes orchestrated hero reveals, parallax, and per-section timelines.
+            </p>
+            <a href="#" class="project-card__link">
+              Case study <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 — placeholder for Canadian client work -->
+        <article class="project-card reveal" data-index="03">
+          <div class="project-card__img">
+            <div class="project-card__placeholder" style="--hue: 30">
+              <span>Client work</span>
+            </div>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span>Elementor</span><span>WordPress</span><span>UX Design</span>
+            </div>
+            <h3>Canadian Client — Web Redesign</h3>
+            <p>
+              Remote contract work redesigning Elementor-based WordPress sites for a Canadian agency. 
+              Focus on clean layouts, performance, and maintainable page builder structure.
+            </p>
+            <a href="#contact" class="project-card__link">
+              Ask me about it <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section class="section section--alt" id="services">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <span class="label">What I do</span>
+        <h2>Services.</h2>
+      </div>
+
+      <div class="services">
+
+        <div class="service-item reveal">
+          <div class="service-item__num">01</div>
+          <div class="service-item__body">
+            <h3>Custom WordPress Development</h3>
+            <p>Theme development from scratch, child themes, custom post types, and ACF/SCF field setups tailored to your content model.</p>
+          </div>
+        </div>
+
+        <div class="service-item reveal">
+          <div class="service-item__num">02</div>
+          <div class="service-item__body">
+            <h3>WooCommerce Stores</h3>
+            <p>Product catalog setup, custom importers, permalink restructuring, and store performance tuning.</p>
+          </div>
+        </div>
+
+        <div class="service-item reveal">
+          <div class="service-item__num">03</div>
+          <div class="service-item__body">
+            <h3>Animated Landing Pages</h3>
+            <p>GSAP + ScrollTrigger animations built for performance. Hero sections, scroll reveals, and smooth interactive experiences.</p>
+          </div>
+        </div>
+
+        <div class="service-item reveal">
+          <div class="service-item__num">04</div>
+          <div class="service-item__body">
+            <h3>Page Builder Design</h3>
+            <p>Elementor and other page builder work — clean, structured, maintainable. Good for clients who need to self-edit.</p>
+          </div>
+        </div>
+
+        <div class="service-item reveal">
+          <div class="service-item__num">05</div>
+          <div class="service-item__body">
+            <h3>Server & DevOps Basics</h3>
+            <p>cPanel, SSH, Apache configs, Cloudflare setup, GitHub deployment workflows for live WordPress sites.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section class="section" id="about">
+    <div class="container about">
+
+      <div class="about__img-col reveal">
+        <div class="about__img-frame">
+          <!-- Replace with your photo: <img src="assets/lam.jpg" alt="Lam, WordPress developer"> -->
+          <div class="about__img-placeholder">L</div>
+        </div>
+        <div class="about__img-tag">Based in Vietnam <span>🇻🇳</span></div>
+      </div>
+
+      <div class="about__content reveal">
+        <span class="label">About me</span>
+        <h2>Developer first,<br><em>designer always.</em></h2>
+        <p>
+          I'm a WordPress developer and web designer based in Vietnam, working with local businesses and remote international clients. 
+          My work sits at the intersection of clean code and thoughtful design — I care about how things look just as much as how they work.
+        </p>
+        <p>
+          I've built everything from WooCommerce product catalogs with custom PHP importers to scroll-animated landing pages with GSAP. 
+          I'm comfortable on the command line, in the WordPress admin, and in the design layer.
+        </p>
+        <p>
+          When I'm not coding, I shoot and edit photos with a cinematic film aesthetic — a habit that keeps my eye sharp.
+        </p>
+
+        <div class="about__stack">
+          <span class="label">Stack</span>
+          <div class="about__stack-pills">
+            <span>PHP 8</span><span>WordPress</span><span>WooCommerce</span>
+            <span>GSAP</span><span>ACF / SCF</span><span>Elementor</span>
+            <span>Vite</span><span>SCSS</span><span>Git</span><span>cPanel / SSH</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section class="section section--alt contact-section" id="contact">
+    <div class="container contact">
+      <div class="contact__text reveal">
+        <span class="label">Get in touch</span>
+        <h2>Let's build<br><em>something good.</em></h2>
+        <p>Open to freelance projects, contract work, and long-term collaborations. Remote-friendly.</p>
+      </div>
+      <div class="contact__links reveal">
+        <!-- Update with your real links -->
+        <a href="mailto:your@email.com" class="contact__link">
+          <span class="contact__link-label">Email</span>
+          <span class="contact__link-val">your@email.com →</span>
+        </a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="contact__link">
+          <span class="contact__link-label">GitHub</span>
+          <span class="contact__link-val">github.com/yourusername →</span>
+        </a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="contact__link">
+          <span class="contact__link-label">LinkedIn</span>
+          <span class="contact__link-val">linkedin.com/in/you →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="nav__logo">Lam<span class="dot">.</span></span>
+      <p>© <span id="year"></span> — Designed & built by Lam. Vietnam.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
