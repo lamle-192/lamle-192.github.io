@@ -125,16 +125,26 @@ const role1 = document.querySelector('.role-1');
 const role2 = document.querySelector('.role-2');
 
 if (role1 && role2 && typeof gsap !== 'undefined') {
-  const holdDuration = 4;
-  const fadeDuration = 0.5;
+  const hold  = 4;
+  const slide = 0.65;
+
+  // Set initial positions — role-2 waits below the clip boundary
+  gsap.set(role1, { y: '0%',    skewY: 0 });
+  gsap.set(role2, { y: '110%',  skewY: 5, opacity: 1 });
 
   const roleTl = gsap.timeline({ repeat: -1, paused: true });
 
   roleTl
-    .to(role1, { opacity: 0, duration: fadeDuration }, `+=${holdDuration}`)
-    .to(role2, { opacity: 1, duration: fadeDuration }, '<')
-    .to(role2, { opacity: 0, duration: fadeDuration }, `+=${holdDuration}`)
-    .to(role1, { opacity: 1, duration: fadeDuration }, '<');
+    // Reset role-2 at the top of every repeat
+    .set(role2, { y: '110%', skewY: 5 })
+    // Hold role-1, then slide it up and out while role-2 slides up and in
+    .to(role1, { y: '-110%',            duration: slide, ease: 'power4.in'  }, `+=${hold}`)
+    .to(role2, { y: '0%', skewY: 0,     duration: slide, ease: 'power4.out' }, '<')
+    // Snap role-1 back below the clip so it can re-enter later
+    .set(role1, { y: '110%', skewY: 5 })
+    // Hold role-2, then slide it up and out while role-1 slides back in
+    .to(role2, { y: '-110%',            duration: slide, ease: 'power4.in'  }, `+=${hold}`)
+    .to(role1, { y: '0%', skewY: 0,     duration: slide, ease: 'power4.out' }, '<');
 
   const heroVisibilityObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

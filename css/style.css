@@ -226,7 +226,8 @@ ul { list-style: none; }
 .roles-wrap {
   display: inline-grid;
   grid-template-columns: 1fr;
-  vertical-align: top;
+  overflow: hidden;
+  vertical-align: bottom;
 }
 .role-1,
 .role-2 {
