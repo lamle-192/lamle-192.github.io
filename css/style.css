@@ -222,7 +222,13 @@ ul { list-style: none; }
   font-style: italic;
   color: var(--color-accent);
 }
-
+.hero__title span.small {
+    font-size: 60%;
+    display: inline-block;
+    position: absolute;
+    left: -80px;
+    bottom: 40px;
+}
 .roles-wrap {
   display: inline-grid;
   grid-template-columns: 1fr;
