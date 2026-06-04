@@ -116,3 +116,35 @@ const sectionObserver = new IntersectionObserver((entries) => {
 });
 
 sections.forEach(s => sectionObserver.observe(s));
+
+/* ============================================================
+   HERO ROLE SWITCHER — GSAP
+============================================================ */
+
+const role1 = document.querySelector('.role-1');
+const role2 = document.querySelector('.role-2');
+
+if (role1 && role2 && typeof gsap !== 'undefined') {
+  const holdDuration = 4;
+  const fadeDuration = 0.5;
+
+  const roleTl = gsap.timeline({ repeat: -1, paused: true });
+
+  roleTl
+    .to(role1, { opacity: 0, duration: fadeDuration }, `+=${holdDuration}`)
+    .to(role2, { opacity: 1, duration: fadeDuration }, '<')
+    .to(role2, { opacity: 0, duration: fadeDuration }, `+=${holdDuration}`)
+    .to(role1, { opacity: 1, duration: fadeDuration }, '<');
+
+  const heroVisibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        roleTl.play();
+      } else {
+        roleTl.pause();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  heroVisibilityObserver.observe(document.getElementById('hero'));
+}
