@@ -172,6 +172,8 @@ ul { list-style: none; }
   align-items: center;
   padding-top: var(--nav-h);
   overflow: hidden;
+      background: #0303b2;
+    color: white;
 }
 
 .hero__inner {
