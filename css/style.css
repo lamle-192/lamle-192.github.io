@@ -4,7 +4,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-display: 'IBM Plex Serif', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
 
   --clr-bg: #F9F7F3;
