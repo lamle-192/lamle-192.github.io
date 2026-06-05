@@ -20,11 +20,10 @@
        NAV
   ============================================================ -->
   <nav class="nav" id="nav">
-    <div class="nav__inner container">
+    <div class="nav__inner">
       <a href="#" class="nav__logo"><em>Lam Le<span class="dot">.</span></em></a>
       <ul class="nav__links">
         <li><a href="#work">Work</a></li>
-        <li><a href="#services">Services</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact" class="nav__cta">Let's talk</a></li>
       </ul>
@@ -71,6 +70,14 @@
 
      
     </div>
+
+    <!-- Circular rotating text — bottom right -->
+    <a href="#contact" class="hero__circle" aria-label="Check out my work">
+      <span id="hero-circle-text">● CHECK OUT MY WORK ● CHECK OUT MY WORK </span>
+      <svg class="hero__circle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
 
     <!-- Decorative background grid -->
     <div class="hero__grid" aria-hidden="true"></div>
@@ -307,6 +314,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

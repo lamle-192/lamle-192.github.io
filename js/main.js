@@ -216,3 +216,62 @@ if (videoEl && videoWrap && heroEl) {
     }, { passive: true });
   }
 }
+
+/* ============================================================
+   HERO CIRCULAR TEXT — idle spin + scroll rotation
+============================================================ */
+
+const circleEl   = document.getElementById('hero-circle-text');
+const circleWrap = document.querySelector('.hero__circle');
+
+if (circleEl && circleWrap && typeof CircleType !== 'undefined') {
+  new CircleType(circleEl).radius(68);
+
+  let totalRotation = 0;  // accumulated degrees from both idle + scroll
+  let lastScrollY    = 0;
+  let isScrolling    = false;
+  let idleTween      = null;
+  let scrollStopTimer;
+
+  // Idle: slow continuous spin via GSAP ticker
+  function startIdle() {
+    isScrolling = false;
+    idleTween = gsap.to({}, {
+      duration: 999,
+      onUpdate() {
+        totalRotation += 0.03; // ~1.8 deg/frame at 60fps ≈ gentle spin
+        gsap.set(circleWrap, { rotation: totalRotation });
+      }
+    });
+  }
+
+  function stopIdle() {
+    if (idleTween) { idleTween.kill(); idleTween = null; }
+  }
+
+  // Scroll: add rotation proportional to scroll delta so it blends with idle offset
+  window.addEventListener('scroll', () => {
+    const delta = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+
+    if (!isScrolling) {
+      isScrolling = true;
+      stopIdle();
+    }
+
+    totalRotation += delta * 0.5;
+
+    gsap.to(circleWrap, {
+      rotation: totalRotation,
+      duration: 0.6,
+      ease: 'power3.out',
+      overwrite: true
+    });
+
+    clearTimeout(scrollStopTimer);
+    scrollStopTimer = setTimeout(startIdle, 1200);
+  }, { passive: true });
+
+  // Kick off idle spin on load
+  startIdle();
+}
