@@ -10,6 +10,8 @@
   --color-bg: #F9F7F3;
   --color-bg-highlight:#0303b2;
   --color-bg-highlight-darker: #030378;
+  --color-bg-highlight-darkest: #050432;
+  
   --color-surface: #FFFFFF;
   --color-text: #1A1917;
   --color-muted: #6B6A65;
@@ -393,7 +395,7 @@ ul { list-style: none; }
    WORK ACCORDION
 ============================================================ */
 .work-section {
-  background: var(--color-bg);
+  background: var(--color-bg-highlight-darkest);
 }
 
 .work-header {
@@ -481,7 +483,7 @@ ul { list-style: none; }
   border: none;
   cursor: pointer;
   text-align: left;
-  color: var(--color-text);
+  color: white;
   font-family: var(--font-body);
   transition: opacity 0.2s;
 }
