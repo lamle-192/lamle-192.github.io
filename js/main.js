@@ -158,3 +158,55 @@ if (role1 && role2 && typeof gsap !== 'undefined') {
 
   heroVisibilityObserver.observe(document.getElementById('hero'));
 }
+
+/* ============================================================
+   HERO VIDEO BACKGROUND — pause off-screen, blur on scroll
+============================================================ */
+
+const heroEl      = document.getElementById('hero');
+const videoWrap   = document.querySelector('.hero__video-wrap');
+const videoEl     = document.querySelector('.hero__video');
+const videoOverlay = document.querySelector('.hero__video-overlay');
+
+if (videoEl && videoWrap && heroEl) {
+  // Skip scroll effect for users who prefer reduced motion
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Pause video when hero is off-screen — saves CPU / battery
+  const videoPauseObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        videoEl.play().catch(() => {});
+      } else {
+        videoEl.pause();
+      }
+    });
+  }, { threshold: 0 });
+  videoPauseObserver.observe(heroEl);
+
+  if (!reducedMotion) {
+    let rafPending = false;
+
+    function updateVideoScroll() {
+      rafPending = false;
+      const heroH   = heroEl.offsetHeight;
+      // progress: 0 = hero fully in view, 1 = hero fully scrolled past 65% of its height
+      const progress = Math.min(1, Math.max(0, window.scrollY / (heroH * 0.65)));
+
+      // Blur the video (oversized wrap hides the blur edge bleed)
+      videoWrap.style.filter = progress > 0 ? `blur(${(progress * 20).toFixed(1)}px)` : '';
+
+      // Deepen the overlay as background fades out
+      if (videoOverlay) {
+        videoOverlay.style.background = `rgba(3, 3, 50, ${(0.45 + progress * 0.45).toFixed(3)})`;
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(updateVideoScroll);
+      }
+    }, { passive: true });
+  }
+}

@@ -39,6 +39,15 @@
        HERO
   ============================================================ -->
   <section class="hero" id="hero">
+
+    <!-- Video background — blurs + fades as user scrolls out -->
+    <div class="hero__video-wrap" aria-hidden="true">
+      <video class="hero__video" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/bg.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero__video-overlay" aria-hidden="true"></div>
+
     <div class="container hero__inner">
 
       <!-- <div class="hero__tag reveal">Available for projects</div> -->

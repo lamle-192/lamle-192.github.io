@@ -173,13 +173,42 @@ ul { list-style: none; }
   align-items: center;
   padding-top: var(--nav-h);
   overflow: hidden;
-      background: var(--color-bg-highlight);
-    color: white;
+  background: var(--color-bg-highlight); /* fallback while video loads */
+  color: white;
+}
+
+/* Video background */
+.hero__video-wrap {
+  position: absolute;
+  inset: -40px; /* oversized so blur edges bleed outside the clipped hero */
+  z-index: 0;
+  pointer-events: none;
+  will-change: filter;
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Base legibility overlay — darkens more on scroll via JS */
+.hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(3, 3, 50, 0.45);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__video-wrap { display: none; }
 }
 
 .hero__inner {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   padding-block: clamp(4rem, 8vw, 7rem);
 }
 
@@ -280,6 +309,7 @@ ul { list-style: none; }
 .hero__grid {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background-image: radial-gradient(circle, rgba(26,25,23,0.08) 1px, transparent 1px);
   background-size: 32px 32px;
   mask-image: radial-gradient(ellipse 80% 80% at 80% 50%, black 30%, transparent 100%);
