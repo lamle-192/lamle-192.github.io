@@ -7,7 +7,9 @@
         "anthropic.claude-code",
         "esbenp.prettier-vscode",
         "ritwickdey.liveserver",
-        "bradlc.vscode-tailwindcss"
+        "wordpresstoolbox.wordpress-toolbox",
+        "bmewburn.vscode-intelephense-client",
+        "esbenp.prettier-vscode"
       ]
     }
   }
