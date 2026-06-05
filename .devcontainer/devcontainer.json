@@ -1,0 +1,14 @@
+{
+  "name": "Portfilio Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "esbenp.prettier-vscode",
+        "ritwickdey.liveserver",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}
