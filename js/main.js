@@ -196,9 +196,15 @@ if (videoEl && videoWrap && heroEl) {
       // Blur the video (oversized wrap hides the blur edge bleed)
       videoWrap.style.filter = progress > 0 ? `blur(${(progress * 20).toFixed(1)}px)` : '';
 
-      // Deepen the overlay as background fades out
+      // Deepen the gradient overlay while preserving its shape
       if (videoOverlay) {
-        videoOverlay.style.background = `rgba(3, 3, 50, ${(0.45 + progress * 0.45).toFixed(3)})`;
+        const t = progress;
+        videoOverlay.style.background = `linear-gradient(
+          to bottom,
+          rgba(3, 3, 50, ${Math.min(1, 0.80 + t * 0.20).toFixed(3)}) 0%,
+          rgba(3, 3, 50, ${Math.min(1, 0.20 + t * 0.55).toFixed(3)}) 45%,
+          rgba(3, 3, 50, ${Math.min(1, 0.70 + t * 0.30).toFixed(3)}) 100%
+        )`;
       }
     }
 

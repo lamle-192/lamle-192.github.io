@@ -113,6 +113,7 @@ ul { list-style: none; }
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 400;
+  color:white
 }
 
 .nav__links {
@@ -193,12 +194,17 @@ ul { list-style: none; }
   display: block;
 }
 
-/* Base legibility overlay — darkens more on scroll via JS */
+/* Gradient overlay — opaque top & bottom, lighter centre; deepens on scroll via JS */
 .hero__video-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(3, 3, 50, 0.45);
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 3, 50, 0.80) 0%,
+    rgba(3, 3, 50, 0.20) 45%,
+    rgba(3, 3, 50, 0.70) 100%
+  );
   pointer-events: none;
 }
 
