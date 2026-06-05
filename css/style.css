@@ -9,6 +9,7 @@
 
   --color-bg: #F9F7F3;
   --color-bg-highlight:#0303b2;
+  --color-bg-highlight-darker: #030378;
   --color-surface: #FFFFFF;
   --color-text: #1A1917;
   --color-muted: #6B6A65;
@@ -372,7 +373,8 @@ ul { list-style: none; }
 }
 
 .section--alt {
-  background: var(--color-surface);
+  background: var(--color-bg-highlight);
+  color:white
 }
 
 .section__header {
