@@ -345,9 +345,9 @@ ul { list-style: none; }
 .btn:active { transform: scale(0.97); }
 
 .btn--primary {
-  background: var(--color-surface);
-  color: var(--color-text);
- 
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
 }
 
 .btn--primary:hover {
