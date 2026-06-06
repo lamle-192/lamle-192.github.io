@@ -175,7 +175,7 @@ ul { list-style: none; }
   position: relative;
   min-height: 100svh;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding-top: var(--nav-h);
   overflow: hidden;
   background: var(--color-bg-highlight); /* fallback while video loads */
@@ -219,7 +219,6 @@ ul { list-style: none; }
 .hero__inner {
   position: relative;
   z-index: 3;
-  padding-block: clamp(4rem, 8vw, 7rem);
 }
 
 .hero__tag {
@@ -346,9 +345,9 @@ ul { list-style: none; }
 .btn:active { transform: scale(0.97); }
 
 .btn--primary {
-  background: var(--color-text);
-  color: var(--color-bg);
-  border-color: var(--color-text);
+  background: var(--color-surface);
+  color: var(--color-text);
+ 
 }
 
 .btn--primary:hover {
