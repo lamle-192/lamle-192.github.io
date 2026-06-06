@@ -205,9 +205,9 @@ ul { list-style: none; }
   z-index: 1;
   background: linear-gradient(
     to bottom,
-    rgba(3, 3, 50, 0.80) 0%,
-    rgba(3, 3, 50, 0.20) 45%,
-    rgba(3, 3, 50, 0.70) 100%
+    rgba(3, 3, 50, 0.20) 0%,
+    rgba(3, 3, 50, 0.8) 45%,
+    rgba(3, 3, 50, 1) 100%
   );
   pointer-events: none;
 }
@@ -389,6 +389,71 @@ ul { list-style: none; }
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   SKILLS TICKER
+============================================================ */
+.ticker-section {
+  background: var(--color-bg-highlight-darkest);
+  overflow: hidden;
+}
+
+.ticker__row {
+  overflow: hidden;
+  padding-block: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ticker__row:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ticker__inner {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: max-content;
+  gap: 0;
+}
+
+.ticker__inner span {
+  font-size: clamp(1.1rem, 2.2vw, 1.75rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  padding-inline: 1.25rem;
+}
+
+.ticker__sep {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-weight: 400 !important;
+  font-size: 0.85em !important;
+  padding-inline: 0 !important;
+}
+
+@keyframes ticker-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes ticker-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker__inner--right {
+  animation: ticker-right 55s linear infinite;
+}
+
+.ticker__inner--left {
+  animation: ticker-left 55s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__inner--right,
+  .ticker__inner--left { animation: none; }
 }
 
 /* ============================================================
