@@ -3,7 +3,8 @@
 ============================================================ */
 
 // Set current year in footer
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* ============================================================
    NAV — sticky scroll effect + mobile menu
@@ -117,53 +118,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(s => sectionObserver.observe(s));
 
-/* ============================================================
-   WORK ACCORDION
-============================================================ */
-
-document.querySelectorAll('.accordion__trigger').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    const item = trigger.closest('.accordion__item');
-    const isOpen = item.classList.contains('open');
-
-    // Close all items
-    document.querySelectorAll('.accordion__item').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
-    });
-
-    // Open the clicked one (unless it was already open)
-    if (!isOpen) {
-      item.classList.add('open');
-      trigger.setAttribute('aria-expanded', 'true');
-    }
-  });
-});
-
-/* Work section filter */
-document.querySelectorAll('.work-filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Close any open accordion before filtering
-    document.querySelectorAll('.accordion__item').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
-    });
-
-    document.querySelectorAll('.work-filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-
-    document.querySelectorAll('.accordion__item').forEach(item => {
-      if (filter === 'all') {
-        item.classList.remove('hidden');
-      } else {
-        const tags = item.dataset.filterTags || '';
-        item.classList.toggle('hidden', !tags.includes(filter));
-      }
-    });
-  });
-});
 
 /* ============================================================
    HERO ROLE SWITCHER — GSAP
