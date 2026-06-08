@@ -532,6 +532,13 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
+.work-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* Standard card: fixed aspect image on top */
 .work-card:not(.work-card--featured) .work-card__img {
   aspect-ratio: 4/3;
