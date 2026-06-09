@@ -175,7 +175,7 @@ ul { list-style: none; }
   position: relative;
   min-height: 100svh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-top: var(--nav-h);
   overflow: hidden;
   background: var(--color-bg-highlight); /* fallback while video loads */
@@ -500,14 +500,12 @@ ul { list-style: none; }
   max-width: 520px;
   line-height: 1.7;
 }
-
 /* Grid layout */
 .work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
 }
-
 /* Base card */
 .work-card {
   background: var(--color-surface);
