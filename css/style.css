@@ -182,13 +182,25 @@ ul { list-style: none; }
   color: white;
 }
 
+/* Curtain — solid overlay that clips away on load */
+.hero__curtain {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: var(--color-bg-highlight);
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+  will-change: clip-path;
+}
+
 /* Video background */
 .hero__video-wrap {
   position: absolute;
-  inset: -40px; /* oversized so blur edges bleed outside the clipped hero */
+  inset: -100px; /* oversized so strong blur edges bleed outside hero */
   z-index: 0;
   pointer-events: none;
-  will-change: filter;
+  opacity: 0; /* JS reveals this during intro sequence */
+  will-change: filter, opacity;
 }
 
 .hero__video {
@@ -397,14 +409,12 @@ ul { list-style: none; }
   background: var(--color-bg-highlight-darkest);
   overflow: hidden;
 }
-/* Temporary: hide hero video background while disabled */
-.hero__video-wrap,
-.hero__video,
-.hero__video-overlay {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+/* Hero text — start invisible; GSAP animates these in on load */
+.hero__title,
+.hero__sub {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: opacity, transform;
 }
 
 .ticker__row {
@@ -759,8 +769,8 @@ ul { list-style: none; }
   bottom: clamp(2rem, 5vw, 3.5rem);
   right: clamp(2rem, 5vw, 3.5rem);
   z-index: 3;
-  width: 150px;
-  height: 150px;
+  width: 220px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;

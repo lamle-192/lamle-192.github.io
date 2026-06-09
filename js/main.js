@@ -162,60 +162,106 @@ if (role1 && role2 && typeof gsap !== 'undefined') {
 }
 
 /* ============================================================
-   HERO VIDEO BACKGROUND — pause off-screen, blur on scroll
+   HERO — intro reveal + scroll-driven video unblur
 ============================================================ */
 
-const heroEl      = document.getElementById('hero');
-const videoWrap   = document.querySelector('.hero__video-wrap');
-const videoEl     = document.querySelector('.hero__video');
-const videoOverlay = document.querySelector('.hero__video-overlay');
+gsap.registerPlugin(ScrollTrigger);
 
-if (videoEl && videoWrap && heroEl) {
-  // Skip scroll effect for users who prefer reduced motion
+const heroEl       = document.getElementById('hero');
+const heroCurtain  = document.querySelector('.hero__curtain');
+const videoWrap    = document.querySelector('.hero__video-wrap');
+const videoEl      = document.querySelector('.hero__video');
+const videoOverlay = document.querySelector('.hero__video-overlay');
+const heroInner    = document.querySelector('.hero__inner');
+const heroTitle    = document.querySelector('.hero__title');
+const heroSub      = document.querySelector('.hero__sub');
+
+const BLUR_INIT = 42;
+
+if (heroEl) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Pause video when hero is off-screen — saves CPU / battery
-  const videoPauseObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        videoEl.play().catch(() => {});
-      } else {
-        videoEl.pause();
-      }
-    });
-  }, { threshold: 0 });
-  videoPauseObserver.observe(heroEl);
+  if (reducedMotion) {
+    if (heroCurtain) heroCurtain.style.display = 'none';
+    if (heroTitle)   gsap.set(heroTitle, { opacity: 1, y: 0 });
+    if (heroSub)     gsap.set(heroSub,   { opacity: 1, y: 0 });
+    if (videoWrap)   { videoWrap.style.opacity = '1'; videoWrap.style.filter = ''; }
+    if (videoEl)     videoEl.play().catch(() => {});
+  } else {
 
-  if (!reducedMotion) {
-    let rafPending = false;
-
-    function updateVideoScroll() {
-      rafPending = false;
-      const heroH   = heroEl.offsetHeight;
-      // progress: 0 = hero fully in view, 1 = hero fully scrolled past 65% of its height
-      const progress = Math.min(1, Math.max(0, window.scrollY / (heroH * 0.65)));
-
-      // Blur the video (oversized wrap hides the blur edge bleed)
-      videoWrap.style.filter = progress > 0 ? `blur(${(progress * 20).toFixed(1)}px)` : '';
-
-      // Deepen the gradient overlay while preserving its shape
-      if (videoOverlay) {
-        const t = progress;
-        videoOverlay.style.background = `linear-gradient(
-          to bottom,
-          rgba(3, 3, 50, ${Math.min(1, 0.80 + t * 0.20).toFixed(3)}) 0%,
-          rgba(3, 3, 50, ${Math.min(1, 0.20 + t * 0.55).toFixed(3)}) 45%,
-          rgba(3, 3, 50, ${Math.min(1, 0.70 + t * 0.30).toFixed(3)}) 100%
-        )`;
-      }
+    // ── INTRO TIMELINE ──────────────────────────────────────────
+    if (videoEl) {
+      videoEl.play().catch(() => {});
+      gsap.set(videoWrap, { filter: `blur(${BLUR_INIT}px)` });
     }
 
-    window.addEventListener('scroll', () => {
-      if (!rafPending) {
-        rafPending = true;
-        requestAnimationFrame(updateVideoScroll);
+    const intro = gsap.timeline({ delay: 0.15 });
+
+    // 1. Curtain wipes upward — reveals dark-blue hero background
+    intro.to(heroCurtain, {
+      clipPath: 'inset(0 0 100% 0)',
+      duration: 1.1,
+      ease: 'expo.inOut',
+      onComplete() { heroCurtain.style.display = 'none'; }
+    });
+
+    // 2. Video fades in (still blurred) as curtain finishes
+    intro.to(videoWrap, {
+      opacity: 1,
+      duration: 1.4,
+      ease: 'power2.out'
+    }, '-=0.55');
+
+    // 3. Title slides up
+    intro.to(heroTitle, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: 'power3.out'
+    }, '-=0.9');
+
+    // 4. Subtitle
+    intro.to(heroSub, {
+      opacity: 1,
+      y: 0,
+      duration: 0.75,
+      ease: 'power3.out'
+    }, '-=0.65');
+
+    // ── SCROLL-DRIVEN UNBLUR (pinned hero) ──────────────────────
+    ScrollTrigger.create({
+      trigger: heroEl,
+      start: 'top top',
+      end: '+=100%',
+      pin: true,
+      scrub: 1.8,
+      onUpdate(self) {
+        const p = self.progress;
+
+        // Text: fade out + rise in first 45% of scroll
+        const textAlpha = Math.max(0, 1 - p / 0.45);
+        gsap.set(heroInner, {
+          opacity: textAlpha,
+          y: -55 * (1 - textAlpha)
+        });
+
+        // Video: unblur across full scroll range
+        const blur = BLUR_INIT * Math.pow(1 - p, 1.6);
+        videoWrap.style.filter = blur > 0.3 ? `blur(${blur.toFixed(1)}px)` : '';
+
+        // Overlay fades out in second half
+        if (videoOverlay) {
+          videoOverlay.style.opacity = Math.max(0, 1 - p * 1.6).toFixed(3);
+        }
       }
-    }, { passive: true });
+    });
+
+    // Pause video when hero is off-screen
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (videoEl) e.isIntersecting ? videoEl.play().catch(() => {}) : videoEl.pause();
+      });
+    }, { threshold: 0 }).observe(heroEl);
   }
 }
 
