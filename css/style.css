@@ -397,11 +397,20 @@ ul { list-style: none; }
   background: var(--color-bg-highlight-darkest);
   overflow: hidden;
 }
+/* Temporary: hide hero video background while disabled */
+.hero__video-wrap,
+.hero__video,
+.hero__video-overlay {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 
 .ticker__row {
   overflow: hidden;
   padding-block: 0.9rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  /* border-top: 1px solid rgba(255, 255, 255, 0.08); */
 }
 
 .ticker__row:last-child {
