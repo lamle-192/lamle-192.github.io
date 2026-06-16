@@ -443,10 +443,12 @@ ul { list-style: none; }
 }
 
 .ticker__sep {
-  color: rgba(255, 255, 255, 0.4) !important;
-  font-weight: 400 !important;
-  font-size: 0.85em !important;
+  display: inline-flex;
+  align-items: center;
+  width: clamp(0.9rem, 1.6vw, 1.3rem);
+  height: clamp(0.9rem, 1.6vw, 1.3rem);
   padding-inline: 0 !important;
+  opacity: 0.4;
 }
 
 @keyframes ticker-right {
@@ -497,6 +499,8 @@ ul { list-style: none; }
 }
 
 .work-header__arrow {
+  width: clamp(2.2rem, 5.2vw, 4.4rem);
+  height: clamp(2.2rem, 5.2vw, 4.4rem);
   color: var(--color-accent);
   flex-shrink: 0;
 }
@@ -520,12 +524,6 @@ ul { list-style: none; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s;
-}
-
-.work-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
 /* Featured card — spans full row, splits into text + image */
@@ -571,11 +569,6 @@ ul { list-style: none; }
     hsl(var(--ph-h), var(--ph-s), 72%) 0%,
     hsl(calc(var(--ph-h) + 30), var(--ph-s), 55%) 100%
   );
-  transition: transform 0.55s var(--ease-out);
-}
-
-.work-card:hover .work-card__img-ph {
-  transform: scale(1.04);
 }
 
 /* Content body */
