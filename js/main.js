@@ -7,6 +7,18 @@ const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* ============================================================
+   SMOOTH SCROLL — GSAP ScrollSmoother
+============================================================ */
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+ScrollSmoother.create({
+  wrapper: '#smooth-wrapper',
+  content: '#smooth-content',
+  smooth: 1.2,
+  effects: true,
+});
+
+/* ============================================================
    NAV — sticky scroll effect + mobile menu
 ============================================================ */
 
