@@ -21,7 +21,10 @@
   ============================================================ -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#" class="nav__logo"><em>Lam Le<span class="dot">.</span></em></a>
+      <div class="nav__brand">
+        <a href="#" class="nav__logo"><em>Lam Le<span class="dot">.</span></em></a>
+        <span class="nav__tagline">Digital designer</span>
+      </div>
       <ul class="nav__links">
         <li><a href="#work">Work</a></li>
         <li><a href="#about">About</a></li>
@@ -79,10 +82,14 @@
 
     <!-- Circular rotating text — bottom right -->
     <a href="#contact" class="hero__circle" aria-label="Check out my work">
-      <span id="hero-circle-text">● CHECK OUT MY WORK ● CHECK OUT MY WORK </span>
-      <svg class="hero__circle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
+      <div class="hero__circle-spin">
+        <span id="hero-circle-text">● CHECK OUT MY WORK ● CHECK OUT MY WORK </span>
+      </div>
+      <span class="hero__circle-arrow-wrap">
+        <svg class="hero__circle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </span>
     </a>
 
     <!-- Decorative background grid -->

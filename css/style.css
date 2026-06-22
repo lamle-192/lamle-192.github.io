@@ -110,11 +110,23 @@ ul { list-style: none; }
   padding:0 60px;
 }
 
+.nav__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+
 .nav__logo {
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 400;
   color:white
+}
+
+.nav__tagline {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .nav__links {
@@ -433,7 +445,7 @@ ul { list-style: none; }
 }
 
 .ticker__inner span {
-  font-size: clamp(1.1rem, 2.2vw, 1.75rem);
+  font-size: 15px;
   /* font-weight: 800; */
   /* text-transform: uppercase; */
   letter-spacing: 0.06em;
@@ -775,17 +787,28 @@ ul { list-style: none; }
 
 .hero__circle:hover { color: var(--color-accent); }
 
-.hero__circle-arrow {
+.hero__circle-arrow-wrap {
   position: absolute;
   width: 22px;
   height: 22px;
-  stroke: currentColor;
-  opacity: 0.8;
   transition: transform 0.3s var(--ease-out);
 }
 
-.hero__circle:hover .hero__circle-arrow {
+.hero__circle:hover .hero__circle-arrow-wrap {
   transform: translateY(3px);
+}
+
+.hero__circle-arrow {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  opacity: 0.8;
+  animation: hero-circle-arrow-pulse 1.6s linear infinite alternate;
+}
+
+@keyframes hero-circle-arrow-pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.3); }
 }
 
 @media (max-width: 680px) {

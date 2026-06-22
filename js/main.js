@@ -282,7 +282,8 @@ if (heroEl) {
 ============================================================ */
 
 const circleEl   = document.getElementById('hero-circle-text');
-const circleWrap = document.querySelector('.hero__circle');
+// Rotate only the text-spin wrapper — keeps the arrow fixed, always pointing down
+const circleWrap = document.querySelector('.hero__circle-spin');
 
 if (circleEl && circleWrap && typeof CircleType !== 'undefined') {
   new CircleType(circleEl).radius(68);
